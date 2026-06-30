@@ -1,0 +1,29 @@
+# Logs
+logs/
+
+
+# Backups
+backups/
+
+
+# Temporary files
+*.tmp
+*.swp
+
+
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+
+# Kubernetes
+*.secret.yaml
+
+
+# Docker
+*.tar
+
+
+# Linux
+*~
