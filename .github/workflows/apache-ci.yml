@@ -1,0 +1,46 @@
+name: Enterprise Apache CI/CD
+
+
+on:
+  push:
+    branches:
+      - main
+      - development
+      - 'feature/**'
+
+
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - name: Build Docker Image
+        run: |
+          docker build \
+            -t ghcr.io/${{ github.repository_owner }}/enterpriseplatform:latest \
+            ./apache
+
+
+      - name: Push Docker Image
+        run: |
+          docker push \
+            ghcr.io/${{ github.repository_owner }}/enterpriseplatform:latest
+
