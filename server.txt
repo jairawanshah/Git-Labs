@@ -1,0 +1,3 @@
+Enterprise platform server
+Environment: Production
+Role: Web Server
